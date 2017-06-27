@@ -1,0 +1,24 @@
+{
+
+  "EnemyValues":
+  [
+    {"Name":"Enemy1","Speed":"4","Damage":"1","Health":"3"},
+    {"Name":"Enemy2","Speed":"11","Damage":"11","Health":"13"}
+  ],
+  "PlayerInfo":
+  {
+    "StartSpeed":"10",
+    "StartDamage":"2",
+    "StartHealth":"2"
+  },
+  "ProjectileInfo":
+  [
+    {
+      "Name":"Missile1",
+      "Damage":"2",
+      "Speed":"6",
+      "Cooldown":"5"
+    }
+  ]
+
+}
