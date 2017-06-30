@@ -30,12 +30,12 @@ public class PlayerShipScript : MonoBehaviour {
 		{
 			ProjectileScript PSTemp = Instantiate(PSSlot1,(LeftGunFire?FLGun:FRGun).position,PSSlot1.transform.rotation);
 			LeftGunFire = !LeftGunFire;
-			PSTemp.Setup(_MousePos,this.transform.rotation.eulerAngles,"",null);
+			PSTemp.Setup(_MousePos,this.transform.rotation.eulerAngles,"",false,null);
 		}
 		if(Input.GetMouseButtonDown(1) && !_SecondFireDelay)
 		{
 			ProjectileScript PSTemp = Instantiate(PSSlot2,this.transform.position,Quaternion.Euler(new Vector3(0,180,0)));
-			PSTemp.Setup(_MousePos,this.transform.rotation.eulerAngles +  new Vector3(90,0,0),"Missile1",DelayCoolback);
+			PSTemp.Setup(_MousePos,this.transform.rotation.eulerAngles +  new Vector3(90,0,0),"Missile1",false,DelayCoolback);
 			_SecondFireDelay = true;
 		}
 	}
@@ -48,5 +48,10 @@ public class PlayerShipScript : MonoBehaviour {
 	private void SecondaryDelay()
 	{
 		_SecondFireDelay = false;
+	}
+
+	public void DamageShip(int amount)
+	{
+		Debug.Log("Hit ship with " + amount);
 	}
 }

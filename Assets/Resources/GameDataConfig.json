@@ -2,8 +2,14 @@
 
   "EnemyValues":
   [
-    {"Name":"Enemy1","Speed":"4","Damage":"1","Health":"3"},
-    {"Name":"Enemy2","Speed":"11","Damage":"11","Health":"13"}
+    {"Name":"Enemy1","Speed":"4","Damage":"1","Health":"3","Personality":"1"},
+    {"Name":"Enemy2","Speed":"11","Damage":"11","Health":"13","Personality":"1"}
+  ],
+  "PersonalityValues":
+  [
+    {"Name":"AGGRESSIVE","FireRate":"3"},
+    {"Name":"DEFENSIVE","FireRate":"2"},
+    {"Name":"SUICIDAL","FireRate":"4"}
   ],
   "PlayerInfo":
   {

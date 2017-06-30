@@ -14,8 +14,9 @@ public class ProjectileScript : MonoBehaviour {
 	private string _PT;
 	private int _CooldownTime;
 	private ProjectileInformation _PI;
+	private bool _EnemyOb;
 
-	public void Setup(Vector3 Target,Vector3 CreationAngle,string ProjectileName,System.Action<int> DelayTime)
+	public void Setup(Vector3 Target,Vector3 CreationAngle,string ProjectileName,bool EnemyFire,System.Action<int> DelayTime)
 	{
 		_Target = Target;
 		_EulerAng = CreationAngle;
@@ -28,8 +29,12 @@ public class ProjectileScript : MonoBehaviour {
 				Debug.LogWarning("NO DATA FOUND");
 				Destroy(this.gameObject);
 			}
-			DelayTime(_PI.Cooldown);
+			if(DelayTime != null)
+			{
+				DelayTime(_PI.Cooldown);
+			}
 		}
+		_EnemyOb = EnemyFire;
 	}
 
 	// Use this for initialization
@@ -75,14 +80,29 @@ public class ProjectileScript : MonoBehaviour {
 		
 	void OnTriggerEnter(Collider a)
 	{
-		if(a.tag == "enemy")
+		if(_EnemyOb)
 		{
-			a.GetComponent<EnemyMoveScript>().HasBeenHit((string.IsNullOrEmpty(_PT)?1:_PI.Damage));
-			if(_DeathParticle != null)
+			if(a.tag == "player")
 			{
-				Instantiate(_DeathParticle,this.transform.position,this.transform.rotation);
+				if(_DeathParticle != null)
+				{
+					Instantiate(_DeathParticle,this.transform.position,this.transform.rotation);
+				}
+				Destroy(this.gameObject);
 			}
-			Destroy(this.gameObject);
 		}
+		else
+		{
+			if(a.tag == "enemy")
+			{
+				a.GetComponent<EnemyMoveScript>().HasBeenHit((string.IsNullOrEmpty(_PT)?1:_PI.Damage));
+				if(_DeathParticle != null)
+				{
+					Instantiate(_DeathParticle,this.transform.position,this.transform.rotation);
+				}
+				Destroy(this.gameObject);
+			}
+		}
+
 	}
 }

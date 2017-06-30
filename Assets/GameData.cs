@@ -46,6 +46,7 @@ public static class GameDataContainer
 public class GameDataClass
 {
 	public List<EnemyValue> EnemyValues;
+	public List<PersonalityValue> PersonalityValues;
 	public PlayerInformation PlayerInfo;
 	public List<ProjectileInformation> ProjectileInfo;
 }
@@ -57,6 +58,14 @@ public class EnemyValue
 	public int Speed;
 	public int Damage;
 	public int Health;
+	public bool Personality;
+}
+
+[Serializable]
+public class PersonalityValue
+{
+	public string Name;
+	public int FireRate;
 }
 
 [Serializable]
